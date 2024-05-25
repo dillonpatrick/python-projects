@@ -49,3 +49,4 @@ while True:
     print("7. Sair")
 
     escolha = str(input("\nDigite a opção desejada: "))
+        print("Opção Invalida")
