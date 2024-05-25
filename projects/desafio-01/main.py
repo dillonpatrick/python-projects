@@ -62,7 +62,12 @@ while True:
 
         else:
             print("O nome do contato é obrigatório.")
+
+    elif escolha == "2":
+        Contatos().listar_contatos(lista_de_contatos)
+
     elif escolha == "7":
         print("Programa finalizado")
         break
+    else:
         print("Opção Invalida")
