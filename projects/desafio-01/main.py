@@ -49,6 +49,19 @@ while True:
     print("7. Sair")
 
     escolha = str(input("\nDigite a opção desejada: "))
+
+    if escolha == "1":
+        nome_contato = input("Digite o nome do contato: ")
+        if nome_contato:
+            telefone_contato = input("(Opcional) Digite o telefone do contato: ")
+            email_contato = input("(Opcional) Digite o email do contato: ")
+
+            Contatos(nome_contato, telefone_contato, email_contato).adicionar_contato(
+                lista_de_contatos
+            )
+
+        else:
+            print("O nome do contato é obrigatório.")
     elif escolha == "7":
         print("Programa finalizado")
         break
