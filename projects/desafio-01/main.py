@@ -15,6 +15,7 @@ class Contatos:
 
         lista_de_contatos.append(contato)
         print(f"O contato '{self.nome}' foi adicionado(a).")
+
         return
 
     def listar_contatos(self, lista_de_contatos):
@@ -33,13 +34,37 @@ class Contatos:
                 f"\nEmail: {email_contato}"
             )
             print("-" * 45)
+
         return
 
     def editar_contato(self, lista_de_contatos, indice_contato, chave, novo_valor):
         indice = int(indice_contato) - 1
-        lista_de_contatos[indice].update({chave: novo_valor})
-        print(f"O contato foi atualizado(a).")
+
+        if indice >= 0 and indice < len(lista_de_contatos):
+            if chave == "nome" or chave == "telefone" or chave == "email":
+                lista_de_contatos[indice].update({chave: novo_valor})
+                print(f"O contato foi atualizado(a).")
+            else:
+                print("Campo inválido.")
+        else:
+            print("Indice inválido")
+
         return
+
+    def favorita_contato(self, lista_de_contatos, indice_contato):
+        indice = int(indice_contato) - 1
+
+        if indice >= 0 and indice < len(lista_de_contatos):
+            if lista_de_contatos[indice]["favorito"]:
+                lista_de_contatos[indice].update({"favorito": False})
+                print(f"O contato foi atualizado(a).")
+            else:
+                lista_de_contatos[indice].update({"favorito": True})
+                print(f"O contato foi atualizado(a).")
+        else:
+            print("Indice inválido")
+
+        return self.listar_contatos(lista_de_contatos)
 
 
 lista_de_contatos = []
@@ -74,16 +99,27 @@ while True:
     elif escolha == "3":
         Contatos().listar_contatos(lista_de_contatos)
         indice_contato = input("Digite o indice do contato a ser editado: ")
-        chave = input("Qual campo deseja atualizar (nome, email, telefone): ").lower()
-        if chave == "nome" or chave == "telefone" or chave == "email":
-            novo_valor = input("Digite o valor atualizado: ")
-            Contatos(nome_contato, telefone_contato, email_contato).editar_contato(
-                lista_de_contatos, indice_contato, chave, novo_valor
-            )
-        else:
-            print("Campo inválido.")
+        chave = (
+            input("Qual campo deseja atualizar (nome, email, telefone): ")
+            .lower()
+            .strip()
+        )
+
+        novo_valor = input("Digite o valor atualizado: ")
+
+        Contatos(nome_contato, telefone_contato, email_contato).editar_contato(
+            lista_de_contatos, indice_contato, chave, novo_valor
+        )
+
+    elif escolha == "4":
+        Contatos().listar_contatos(lista_de_contatos)
+        indice_contato = indice_contato = input(
+            "Digite o indice do contato que deseja marcar/desmarcar como favorito: "
+        )
+        Contatos().favorita_contato(lista_de_contatos, indice_contato)
+
     elif escolha == "7":
         print("Programa finalizado")
         break
     else:
-        print("Opção Invalida")
+        print("Opção Inválida")
