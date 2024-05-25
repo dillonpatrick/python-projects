@@ -34,3 +34,18 @@ class Contatos:
             )
             print("-" * 45)
         return
+
+
+lista_de_contatos = []
+
+while True:
+    print("\nMenu do gerenciador de lista contatos:")
+    print("1. Adicionar um contato")
+    print("2. Visualizar a lista de contatos cadastrados")
+    print("3. Editar um contato")
+    print("4. Marcar/desmarcar um contato como favorito")
+    print("5. Ver uma lista de contatos favoritos")
+    print("6. Apagar um contato")
+    print("7. Sair")
+
+    escolha = str(input("\nDigite a opção desejada: "))
