@@ -8,7 +8,7 @@ class Contatos:
     def adicionar_contato(self, lista_de_contatos):
         contato = {
             "nome": self.nome,
-            "telefone": self.telefone.replace(" ", ""),
+            "telefone": self.telefone,
             "email": self.email,
             "favorito": self.favorito,
         }
@@ -66,6 +66,27 @@ class Contatos:
 
         return self.listar_contatos(lista_de_contatos)
 
+    def listar_favoritos(self, lista_de_contatos):
+        print("\nLista de contatos favoritos")
+        print("-" * 45)
+
+        if len(lista_de_contatos):
+            for indice, contato in enumerate(lista_de_contatos, start=1):
+                favorito = "✔" if contato["favorito"] else " "
+                if contato["favorito"]:
+                    print(
+                        f"Indice: {indice}"
+                        f"\nFavorito: [{favorito}]"
+                        f"\nNome: {contato['nome']}"
+                        f"\nTelefone: {contato['telefone']}"
+                        f"\nEmail: {contato['email']}"
+                    )
+                print("-" * 45)
+        else:
+            print("Lista vazia.")
+
+        return
+
 
 lista_de_contatos = []
 
@@ -117,6 +138,9 @@ while True:
             "Digite o indice do contato que deseja marcar/desmarcar como favorito: "
         )
         Contatos().favorita_contato(lista_de_contatos, indice_contato)
+
+    elif escolha == "5":
+        Contatos().listar_favoritos(lista_de_contatos)
 
     elif escolha == "7":
         print("Programa finalizado")
