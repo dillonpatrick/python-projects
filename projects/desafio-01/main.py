@@ -87,6 +87,17 @@ class Contatos:
 
         return
 
+    def deletar_contato(self, lista_de_contatos, indice_contato):
+        indice = int(indice_contato) - 1
+
+        if indice >= 0 and indice < len(lista_de_contatos):
+            del lista_de_contatos[indice]
+            print(f"Contato deletado")
+        else:
+            print("Indice inválido")
+
+        return
+
 
 lista_de_contatos = []
 
@@ -141,6 +152,11 @@ while True:
 
     elif escolha == "5":
         Contatos().listar_favoritos(lista_de_contatos)
+
+    elif escolha == "6":
+        Contatos().listar_contatos(lista_de_contatos)
+        indice_contato = input("Digite o indice do contato que deseja remover: ")
+        Contatos().deletar_contato(lista_de_contatos, indice_contato)
 
     elif escolha == "7":
         print("Programa finalizado")
