@@ -29,7 +29,7 @@ def get_tasks():
     return jsonify(output)
 
 
-@app.route("/task/<int:id>", methods=["GET"])
+@app.route("/tasks/<int:id>", methods=["GET"])
 def get_task(id):
     for t in tasks:
         if t.id == id:
@@ -53,7 +53,6 @@ def update_task(id):
     task.title = data["title"]
     task.description = data["description"]
     task.completed = data["completed"]
-    task.batata = data["batata"]
 
     return jsonify({"message": "Tarefa atualizada com sucesso"})
 
@@ -73,4 +72,4 @@ def delete_task(id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
