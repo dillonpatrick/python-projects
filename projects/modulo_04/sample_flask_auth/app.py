@@ -43,6 +43,11 @@ def login():
     return jsonify({"message": "Credenciais inválidas"}), 400
 
 
+@app.route("/logout", methods=["GET"])
+@login_required
+def logout():
+    logout_user()
+    return jsonify({"message": "Logout realizado com sucesso."})
 
 
 @app.route("/hello", methods=["GET"])
