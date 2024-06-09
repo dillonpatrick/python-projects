@@ -107,6 +107,24 @@ def update_user(user_id):
     return jsonify({"message": "Usuário não encontrado."}), 404
 
 
+@app.route("/user/<int:user_id>", methods=["DELETE"])
+@login_required
+def delete_user(user_id):
+    user = User.query.get(user_id)
+
+    if user:
+        if user_id == current_user.id:
+            return jsonify({"message": "Não é possivel se auto remover"}), 403
+        elif user.username == "admin":
+            return jsonify({"message": "O usuário admin não pode ser removido."}), 403
+        elif user.username != "admin" and user_id != current_user.id:
+            db.session.delete(user)
+            db.session.commit()
+            return jsonify({"message": f"Usuário {user.username} deletado com sucesso"})
+
+    return jsonify({"message": "Usuário não encontrado."}), 404
+
+
 @app.route("/hello", methods=["GET"])
 def hello_world():
     return "Hello World"
