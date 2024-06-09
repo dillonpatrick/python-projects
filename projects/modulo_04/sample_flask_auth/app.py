@@ -100,6 +100,9 @@ def update_user(user_id):
     user = User.query.get(user_id)
     data = request.json
 
+    if user_id != current_user.id and current_user.role == "user":
+        return jsonify({"message": "Operação não permitida."}), 403
+
     if user and data.get("password"):
         user.password = data.get("password")
         db.session.commit()
@@ -114,12 +117,15 @@ def update_user(user_id):
 def delete_user(user_id):
     user = User.query.get(user_id)
 
+    if current_user.role != "admin":
+        return jsonify({"message": "Operação não permitida."}), 403
+
     if user:
         if user_id == current_user.id:
-            return jsonify({"message": "Não é possivel se auto remover"}), 403
-        elif user.username == "admin":
-            return jsonify({"message": "O usuário admin não pode ser removido."}), 403
-        elif user.username != "admin" and user_id != current_user.id:
+            return jsonify({"message": "Não é possivel se auto remover."}), 403
+        elif user.role == "admin":
+            return jsonify({"message": "O usuário admin não pode ser deletado."}), 403
+        elif user.role != "admin" and user_id != current_user.id:
             db.session.delete(user)
             db.session.commit()
             return jsonify({"message": f"Usuário {user.username} deletado com sucesso."})
