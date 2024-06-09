@@ -33,7 +33,7 @@ def login():
     if username and password:
         user = User.query.filter_by(username=username).first()
 
-        if user and user.password == password:
+        if username and bcrypt.checkpw(str.encode(password), str.encode(user.password)):
             login_user(user)
             print(current_user.is_authenticated)
             return jsonify({"message": "Autenticação realizada com sucesso."})
@@ -59,7 +59,8 @@ def create_user():
         return jsonify({"message": "Usuário já existe, escolha outro username."}), 403
 
     if username and password:
-        user = User(username=username, password=password, role="user")
+        hashed_password = bcrypt.hashpw(str.encode(password), bcrypt.gensalt())
+        user = User(username=username, password=hashed_password, role="user")
         db.session.add(user)
         db.session.commit()
         return jsonify({"message": "Usuário criado com suscesso."})
@@ -124,7 +125,9 @@ def delete_user(user_id):
         elif user.role != "admin" and user_id != current_user.id:
             db.session.delete(user)
             db.session.commit()
-            return jsonify({"message": f"Usuário {user.username} deletado com sucesso."})
+            return jsonify(
+                {"message": f"Usuário {user.username} deletado com sucesso."}
+            )
 
     return jsonify({"message": "Usuário não encontrado."}), 404
 
