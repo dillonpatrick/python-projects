@@ -80,6 +80,18 @@ def get_user(user_id):
     return jsonify({"message": "Usuário não encontrado"}), 404
 
 
+@app.route("/users", methods=["GET"])
+@login_required
+def get_all_users():
+    get_users = User.query.order_by(User.id).all()
+    users_list = []
+
+    for u in get_users:
+        users_list.append({"id": int(u.id), "username": u.username})
+
+    return jsonify({"message": f"{users_list}"})
+
+
 @app.route("/hello", methods=["GET"])
 def hello_world():
     return "Hello World"
