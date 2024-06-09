@@ -1,4 +1,9 @@
 from flask import Flask, request, jsonify
+import bcrypt
+from flask import Flask, jsonify, request
+from flask_login import (LoginManager, current_user, login_required,
+                         login_user, logout_user)
+
 from database import db
 from models.user import User
 from flask_login import (
