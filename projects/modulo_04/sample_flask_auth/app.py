@@ -63,7 +63,7 @@ def create_user():
         return jsonify({"message": "Usuário já existe, escolha outro username."}), 403
 
     if username and password:
-        user = User(username=username, password=password)
+        user = User(username=username, password=password, role="user")
         db.session.add(user)
         db.session.commit()
         return jsonify({"message": "Usuário criado com suscesso."})
