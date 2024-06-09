@@ -5,3 +5,4 @@ Werkzeug==2.3.0
 pymysql==1.1.0
 cryptography==41.0.7
 black==24.4.2
+bcrypt==4.1.3
