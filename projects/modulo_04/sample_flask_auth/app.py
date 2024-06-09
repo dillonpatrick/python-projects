@@ -40,9 +40,9 @@ def login():
         if user and user.password == password:
             login_user(user)
             print(current_user.is_authenticated)
-            return jsonify({"message": "Autenticação realizada com sucesso"})
+            return jsonify({"message": "Autenticação realizada com sucesso."})
 
-    return jsonify({"message": "Credenciais inválidas"}), 400
+    return jsonify({"message": "Credenciais inválidas."}), 400
 
 
 @app.route("/logout", methods=["GET"])
@@ -79,7 +79,7 @@ def get_user(user_id):
     if user:
         return jsonify({"username": f"{user.username}"})
 
-    return jsonify({"message": "Usuário não encontrado"}), 404
+    return jsonify({"message": "Usuário não encontrado."}), 404
 
 
 @app.route("/users", methods=["GET"])
@@ -122,7 +122,7 @@ def delete_user(user_id):
         elif user.username != "admin" and user_id != current_user.id:
             db.session.delete(user)
             db.session.commit()
-            return jsonify({"message": f"Usuário {user.username} deletado com sucesso"})
+            return jsonify({"message": f"Usuário {user.username} deletado com sucesso."})
 
     return jsonify({"message": "Usuário não encontrado."}), 404
 
