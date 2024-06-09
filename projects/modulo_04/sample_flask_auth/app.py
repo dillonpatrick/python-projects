@@ -1,4 +1,3 @@
-from flask import Flask, request, jsonify
 import bcrypt
 from flask import Flask, jsonify, request
 from flask_login import (LoginManager, current_user, login_required,
@@ -6,14 +5,6 @@ from flask_login import (LoginManager, current_user, login_required,
 
 from database import db
 from models.user import User
-from flask_login import (
-    LoginManager,
-    login_user,
-    current_user,
-    logout_user,
-    login_required,
-)
-
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "your_secret_key"
