@@ -56,6 +56,10 @@ def create_user():
     username = data.get("username")
     password = data.get("password")
 
+    user = User.query.filter_by(username=username).first()
+    if user:
+        return jsonify({"message": "Usuário já existe, escolha outro username."}), 403
+
     if username and password:
         user = User(username=username, password=password)
         db.session.add(user)
