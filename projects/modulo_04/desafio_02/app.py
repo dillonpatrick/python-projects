@@ -43,5 +43,30 @@ def login():
     return jsonify({"message": "Invalid credentials."}), 401
 
 
+@app.route("/meal", methods=["POST"])
+@login_required
+def meal():
+    data = request.json
+
+    meal_name = data.get("name")
+    is_diet = data.get("is_diet", False)
+    mael_description = data.get("description", "")
+    date = data.get("date", datetime.now())
+
+    if meal_name:
+        meal = Meal(
+            user_id=current_user.id,
+            name=meal_name,
+            is_diet=is_diet,
+            description=mael_description,
+            date=date,
+        )
+        db.session.add(meal)
+        db.session.commit()
+        return jsonify({"message": "Meal successfully created."})
+
+    return jsonify({"message": "Invalid request"}), 400
+
+
 if __name__ == "__main__":
     app.run(debug=True)
