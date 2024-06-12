@@ -51,4 +51,4 @@ class Matematica:
         return a + b
 
 
-print(Matematica.somar(12,45))
+print(Matematica.somar(12, 45))
