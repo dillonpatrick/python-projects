@@ -100,5 +100,25 @@ def delete_meal(meal_id):
     return jsonify({"message": "Meal not found"}), 404
 
 
+@app.route("/meal", methods=["GET"])
+@login_required
+def list_meals():
+    meals_list = []
+    meals = Meal.query.filter_by(user_id=current_user.id).all()
+    for m in meals:
+        meals_list.append(
+            {
+                "id": m.id,
+                "user_id": m.user_id,
+                "name": m.name,
+                "description": m.description,
+                "date": str(m.date),
+                "is_diet": m.is_diet,
+            }
+        )
+
+    return jsonify(meals=meals_list)  # retorna o json tratado/formatado certinhos
+
+
 if __name__ == "__main__":
     app.run(debug=True)
