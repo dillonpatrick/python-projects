@@ -68,5 +68,24 @@ def meal():
     return jsonify({"message": "Invalid request"}), 400
 
 
+@app.route("/meal/<int:meal_id>", methods=["PUT"])
+@login_required
+def update_meal(meal_id):
+    meal = Meal.query.get(meal_id)
+
+    data = request.json
+
+    if meal and current_user.id == meal.user_id:
+        meal.name = data.get("name", meal.name)
+        meal.is_diet = data.get("is_diet", meal.is_diet)
+        meal.description = data.get("description", meal.description)
+        meal.date = data.get("date", meal.date)
+
+        db.session.commit()
+        return jsonify({"message": "Meal changed successfully."})
+
+    return jsonify({"message": "Meal not found"}), 404
+
+
 if __name__ == "__main__":
     app.run(debug=True)
