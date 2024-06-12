@@ -120,5 +120,24 @@ def list_meals():
     return jsonify(meals=meals_list)  # retorna o json tratado/formatado certinhos
 
 
+@app.route("/meal/<int:meal_id>", methods=["GET"])
+@login_required
+def get_meal(meal_id):
+    meal = Meal.query.get(meal_id)
+
+    if meal and current_user.id == meal.user_id:
+        meal_user = {
+            "id": meal.id,
+            "user_id": meal.user_id,
+            "name": meal.name,
+            "description": meal.description,
+            "date": str(meal.date),
+            "is_diet": meal.is_diet,
+        }
+        return jsonify(meal=meal_user)
+
+    return jsonify({"message": "Meal not found."}), 404
+
+
 if __name__ == "__main__":
     app.run(debug=True)
