@@ -161,3 +161,7 @@ cython_debug/
 
 #ignore mysql files
 /mysql
+
+#ignore qr_code path
+
+static
