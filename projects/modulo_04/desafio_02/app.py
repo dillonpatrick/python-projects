@@ -63,7 +63,9 @@ def meal():
         )
         db.session.add(meal)
         db.session.commit()
-        return jsonify({"message": "Meal successfully created."})
+        return jsonify(
+            {"message": "Meal successfully created.", "meal": meal.to_dict()}
+        )
 
     return jsonify({"message": "Invalid request"}), 400
 
