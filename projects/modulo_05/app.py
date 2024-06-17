@@ -1,8 +1,10 @@
 from datetime import datetime, timedelta
+
 from flask import Flask, jsonify, request, send_file
-from repository.database import db
+
 from db_models.payment import Payment
 from payments.pix import Pix
+from repository.database import db
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
