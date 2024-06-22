@@ -1,6 +1,6 @@
 from datetime import datetime, timedelta
 
-from flask import Flask, jsonify, request, send_file, render_template
+from flask import Flask, jsonify, render_template, request, send_file
 from flask_socketio import SocketIO
 
 from db_models.payment import Payment
@@ -67,6 +67,7 @@ def confirmation_pix():
 
     payment.paid = True
     db.session.commit()
+    socketio.emit(f"payment-confirmed-{payment.id}")
 
     return jsonify({"message": "The payment has been confirmed"})
 
@@ -74,6 +75,13 @@ def confirmation_pix():
 @app.route("/payments/pix/<int:payment_id>", methods=["GET"])
 def payment_pix_page(payment_id):
     payment = Payment.query.get(payment_id)
+
+    if payment.paid:
+        return render_template(
+            "confirmed_payment.html",
+            payment_id=payment.id,
+            value=payment.value,
+        )
 
     return render_template(
         "payment.html",
