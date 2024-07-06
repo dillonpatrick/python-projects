@@ -1,6 +1,7 @@
 from typing import Dict, List
 
-from src.drivers.interfaces.driver_handler_interface import DriverHandlerInterface
+from src.drivers.interfaces.driver_handler_interface import \
+    DriverHandlerInterface
 
 from .calculator_2 import Calculator2
 

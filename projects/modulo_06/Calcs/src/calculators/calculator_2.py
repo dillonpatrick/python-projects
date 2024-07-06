@@ -2,7 +2,8 @@ from typing import Dict, List
 
 from flask import request as FlaskRequest
 
-from src.drivers.interfaces.driver_handler_interface import DriverHandlerInterface
+from src.drivers.interfaces.driver_handler_interface import \
+    DriverHandlerInterface
 
 
 class Calculator2:
