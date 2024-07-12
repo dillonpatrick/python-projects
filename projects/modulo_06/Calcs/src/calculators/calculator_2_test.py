@@ -1,7 +1,5 @@
 from typing import Dict, List
 
-from src.drivers.interfaces.driver_handler_interface import \
-    DriverHandlerInterface
 
 from .calculator_2 import Calculator2
 
@@ -11,7 +9,7 @@ class MockRequest:
         self.json = body
 
 
-class MockDriverHandler(DriverHandlerInterface):
+class MockDriverHandler:
     def standard_derivation(self, number: List[float]) -> float:
         return 2  # um valor qualquer para testar a calculadora
 
