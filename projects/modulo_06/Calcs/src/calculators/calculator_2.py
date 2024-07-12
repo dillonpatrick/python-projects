@@ -4,6 +4,7 @@ from flask import request as FlaskRequest
 
 from src.drivers.interfaces.driver_handler_interface import \
     DriverHandlerInterface
+from src.errors.http_bad_request import HttpBadRequestError
 
 
 class Calculator2:
@@ -20,7 +21,7 @@ class Calculator2:
 
     def _validate_body(self, body: Dict) -> List:
         if "numbers" not in body:
-            raise Exception("Body mal formatado")
+            raise HttpBadRequestError("Body mal formatado")
 
         input_data = body["numbers"]
         return input_data
