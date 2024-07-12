@@ -1,7 +1,8 @@
-from .calculator_3 import Calculator3
 from typing import Dict, List
 
 from pytest import raises
+
+from .calculator_3 import Calculator3
 
 
 class MockRequest:
