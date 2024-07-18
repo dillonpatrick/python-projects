@@ -1,7 +1,6 @@
 from typing import Dict
 
 from flask import request as FlaskRequest
-
 from src.errors.http_bad_request import HttpBadRequestError
 
 

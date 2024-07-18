@@ -7,9 +7,11 @@ class MockRequest:
     def __init__(self, body: Dict) -> None:
         self.json = body
 
+
 class MockDriverHandler:
     def numbers_average(self, number: List[float]) -> float:
         return 5
+
 
 def test_calculate():
     mock_request = MockRequest({"numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9]})

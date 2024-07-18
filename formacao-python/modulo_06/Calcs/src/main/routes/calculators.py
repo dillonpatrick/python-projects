@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request
-
 from src.errors.error_controller import handle_errors
 from src.main.factories.calculator1_factory import calculator1_factory
 from src.main.factories.calculator2_factory import calculator2_factory

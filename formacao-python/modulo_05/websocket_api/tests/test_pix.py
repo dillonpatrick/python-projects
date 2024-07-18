@@ -2,9 +2,9 @@ import sys
 
 sys.path.append(".")
 
-import pytest
 import os
 
+import pytest
 from payments.pix import Pix
 
 

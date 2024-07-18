@@ -1,9 +1,8 @@
 from datetime import datetime, timedelta
 
+from db_models.payment import Payment
 from flask import Flask, jsonify, render_template, request, send_file
 from flask_socketio import SocketIO
-
-from db_models.payment import Payment
 from payments.pix import Pix
 from repository.database import db
 

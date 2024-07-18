@@ -1,13 +1,8 @@
 import bcrypt
 from database import db
 from flask import Flask, jsonify, request
-from flask_login import (
-    LoginManager,
-    current_user,
-    login_required,
-    login_user,
-    logout_user,
-)
+from flask_login import (LoginManager, current_user, login_required,
+                         login_user, logout_user)
 from models.user import User
 
 app = Flask(__name__)
