@@ -1,5 +1,0 @@
-
-def Hello():
-    return "ola"
-
-
