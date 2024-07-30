@@ -1,4 +1,5 @@
 import pytest
+
 from src.models.sqlite.settings.connection import db_connection_handler
 
 from .pets_repository import PetsRepository
@@ -12,6 +13,7 @@ def test_list_pets():
     response = repo.list_pets()
     print()
     print(response)
+
 
 @pytest.mark.skip(reason="Interação com o banco")
 def test_delete_pets():

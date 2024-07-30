@@ -1,6 +1,9 @@
 from unittest import mock
+
 from mock_alchemy.mocking import UnifiedAlchemyMagicMock
+
 from src.models.sqlite.entities.pets import PetsTable
+
 from .pets_repository import PetsRepository
 
 
