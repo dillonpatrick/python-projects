@@ -1,5 +1,4 @@
 from sqlalchemy import BIGINT, Column, String
-
 from src.models.sqlite.settings.base import Base
 
 
