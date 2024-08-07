@@ -1,4 +1,5 @@
 import pytest
+
 from src.models.sqlite.settings.connection import db_connection_handler
 
 from .people_repository import PeopleRepository
