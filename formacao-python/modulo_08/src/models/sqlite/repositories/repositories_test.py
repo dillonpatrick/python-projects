@@ -25,9 +25,9 @@ def test_delete_pets():
 
 
 @pytest.mark.skip(reason="Interação com o banco de dados")
-def test_insert_people():
+def test_insert_person():
     repo = PeopleRepository(db_connection_handler)
-    repo.insert_people(first_name="Patrick", last_name="Nascimento", age=29, pet_id=1)
+    repo.insert_person(first_name="Patrick", last_name="Nascimento", age=29, pet_id=1)
 
 
 @pytest.mark.skip(reason="Interação com o banco de dados")

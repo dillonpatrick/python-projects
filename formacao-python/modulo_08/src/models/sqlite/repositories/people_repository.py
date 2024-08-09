@@ -8,7 +8,7 @@ class PeopleRepository:
     def __init__(self, db_connection) -> None:
         self.__db_connection = db_connection
 
-    def insert_people(self, first_name: str, last_name: str, age: int, pet_id: int):
+    def insert_person(self, first_name: str, last_name: str, age: int, pet_id: int):
         with self.__db_connection as database:
             try:
                 person_data = PeopleTable(
