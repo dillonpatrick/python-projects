@@ -20,7 +20,7 @@ class PersonCreatorController:
         return formated_response
 
     def __validate_firt_and_last_name(self, first_name: str, last_name: str) -> None:
-        non_valid_caracteres = re.compile(r"[a-zA-Z]")
+        non_valid_caracteres = re.compile(r"[^a-zA-Z]")
 
         if non_valid_caracteres.search(first_name) or non_valid_caracteres.search(
             last_name
@@ -30,7 +30,7 @@ class PersonCreatorController:
     def __insert_person_in_db(
         self, first_name: str, last_name: str, age: int, pet_id: int
     ) -> None:
-        self.__people_repository.insert_person(self, first_name, last_name, age, pet_id)
+        self.__people_repository.insert_person(first_name, last_name, age, pet_id)
 
     def __format_response(self, person_info: dict) -> dict:
         return {"data": {"type": "Person", "count": 1, "attributes": person_info}}
