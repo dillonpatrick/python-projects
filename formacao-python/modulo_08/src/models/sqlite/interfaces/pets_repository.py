@@ -3,7 +3,7 @@ from abc import ABC, abstractmethod
 from src.models.sqlite.entities.pets import PetsTable
 
 
-class PetsRepository(ABC):
+class PetsRepositoryInterface(ABC):
 
     @abstractmethod
     def list_pets(self) -> list[PetsTable]:
