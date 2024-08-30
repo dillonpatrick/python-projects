@@ -1,9 +1,9 @@
+from src.controllers.interfaces.person_finder_controller import \
+    PersonFinderControllerInterface
+
 from .http_types.http_request import HttpRequest
 from .http_types.http_response import HttpResponse
 from .interfaces.view_interface import ViewInterface
-from src.controllers.interfaces.person_finder_controller import (
-    PersonFinderControllerInterface,
-)
 
 
 class PersonFinderView(ViewInterface):
