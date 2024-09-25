@@ -20,5 +20,5 @@ def test_calculate():
     calculator_2 = Calculator2(driver)
     formated_response = calculator_2.calculate(mock_request)
 
-    assert isinstance(formated_response, dict)
+    assert isinstance(formated_response,Dict)
     assert formated_response == {"data": {"Calculator": 2, "result": 0.5}}

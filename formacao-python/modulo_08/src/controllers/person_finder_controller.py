@@ -1,16 +1,15 @@
+from typing import Dict
 from src.models.sqlite.entities.people import PeopleTable
-from src.models.sqlite.interfaces.people_repository import \
-    PeopleRepositoryInterface
+from src.models.sqlite.interfaces.people_repository import PeopleRepositoryInterface
 
-from .interfaces.person_finder_controller import \
-    PersonFinderControllerInterface
+from .interfaces.person_finder_controller import PersonFinderControllerInterface
 
 
 class PersonFinderController(PersonFinderControllerInterface):
     def __init__(self, people_repository: PeopleRepositoryInterface) -> None:
         self.__people_repository = people_repository
 
-    def find(self, person_id: int) -> dict:
+    def find(self, person_id: int) -> Dict:
         person = self.__find_person_in_db(person_id)
         response = self.__format_response(person)
         return response
@@ -22,7 +21,7 @@ class PersonFinderController(PersonFinderControllerInterface):
 
         return person
 
-    def __format_response(self, person: PeopleTable) -> dict:
+    def __format_response(self, person: PeopleTable) -> Dict:
         return {
             "data": {
                 "type": "Person",
